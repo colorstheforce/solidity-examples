@@ -60,12 +60,12 @@ module.exports = {
 
   networks: {
     rinkeby: {
-      url: "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+      url: "https://ti97rzeaxt3i.usemoralis.com:2053/server",
       chainId: 4,
       accounts: accounts(),
     },
     'bsc-testnet': {
-      url: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+      url: 'https://ti97rzeaxt3i.usemoralis.com:2053/server',
       chainId: 97,
       accounts: accounts(),
     },
@@ -75,7 +75,7 @@ module.exports = {
       accounts: accounts(),
     },
     mumbai: {
-      url: "https://rpc-mumbai.maticvigil.com/",
+      url: "https://ti97rzeaxt3i.usemoralis.com:2053/server",
       chainId: 80001,
       accounts: accounts(),
     },

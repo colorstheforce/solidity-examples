@@ -11,7 +11,7 @@ module.exports = async function({deployments, getNamedAccounts}) {
     console.log({onftArgs})
     console.log(`[${hre.network.name}] Endpoint Address: ${lzEndpointAddress}`)
 
-    await deploy("OmnichainNonFungibleToken", {
+    await deploy("OxPokemon", {
         from: deployer,
         args: ["https://layerzero.network", lzEndpointAddress, onftArgs.startId, onftArgs.maxSupply],
         log: true,
@@ -19,4 +19,4 @@ module.exports = async function({deployments, getNamedAccounts}) {
     })
 }
 
-module.exports.tags = ["OmnichainNonFungibleToken"]
+module.exports.tags = ["OxPokemon"]

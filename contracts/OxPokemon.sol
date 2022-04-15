@@ -52,7 +52,7 @@ import "./interfaces/ILayerZeroEndpoint.sol";
 /// @author sirarthurmoney
 /// @notice You can use this to mint ONFT and transfer across chain
 /// @dev All function calls are currently implemented without side effects
-contract OmnichainNonFungibleToken is ERC721, NonblockingReceiver, ILayerZeroUserApplicationConfig {
+contract OxPokemon is ERC721, NonblockingReceiver, ILayerZeroUserApplicationConfig {
 
     string public baseTokenURI;
     uint256 nextTokenId;
@@ -69,7 +69,7 @@ contract OmnichainNonFungibleToken is ERC721, NonblockingReceiver, ILayerZeroUse
         uint256 _startToken,
         uint256 _maxMint
     )
-    ERC721("OmnichainNonFungibleToken", "ONFT"){
+    ERC721("0xPokemon", "PKMN"){
         setBaseURI(_baseTokenURI);
         endpoint = ILayerZeroEndpoint(_layerZeroEndpoint);
         nextTokenId = _startToken;
@@ -78,18 +78,18 @@ contract OmnichainNonFungibleToken is ERC721, NonblockingReceiver, ILayerZeroUse
 
     /// @notice Mint your OmnichainNonFungibleToken
     function mint() external payable {
-        require(nextTokenId + 1 <= maxMint, "ONFT: Max limit reached");
+        require(nextTokenId + 1 <= maxMint, "PKMN: Max limit reached");
         _safeMint(msg.sender, ++nextTokenId);
     }
 
     /// @notice Burn OmniChainNFT_tokenId on source chain and mint on destination chain
     /// @param _chainId the destination chain id you want to transfer too
-    /// @param omniChainNFT_tokenId the id of the ONFT you want to transfer
+    /// @param omniChainNFT_tokenId the id of the PKMN you want to transfer
     function transferOmnichainNFT(
         uint16 _chainId,
         uint256 omniChainNFT_tokenId
     ) public payable {
-        require(msg.sender == ownerOf(omniChainNFT_tokenId), "Message sender must own the OmnichainNFT.");
+        require(msg.sender == ownerOf(omniChainNFT_tokenId), "Message sender must own the 0xPokemon.");
         require(trustedSourceLookup[_chainId].length != 0, "This chain is not a trusted source source.");
 
         // burn ONFT on source chain
@@ -101,7 +101,7 @@ contract OmnichainNonFungibleToken is ERC721, NonblockingReceiver, ILayerZeroUse
         // encode adapterParams w/ extra gas for destination chain
         // This example uses 500,000 gas. Your implementation may need more.
         uint16 version = 1;
-        uint gas = 225000;
+        uint gas =  6000000;
         bytes memory adapterParams = abi.encodePacked(version, gas);
 
         // use LayerZero estimateFees for cross chain delivery

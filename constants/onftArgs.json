@@ -1,9 +1,9 @@
 {
-  "bsc-testnet": {
+  "rinkeby": {
     "startId": 0,
     "maxSupply": 50
   },
-  "fuji": {
+  "mumbai": {
     "startId": 50,
     "maxSupply": 100
   },

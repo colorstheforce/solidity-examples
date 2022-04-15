@@ -1,13 +1,13 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("OmnichainNonFungibleToken", function () {
+describe("OxPokemon", function () {
     beforeEach(async function () {
         this.accounts = await ethers.getSigners();
         this.owner = this.accounts[0];
 
         const LZEndpointMock = await ethers.getContractFactory("LZEndpointMock");
-        const OmnichainNonFungibleToken = await ethers.getContractFactory("OmnichainNonFungibleToken");
+        const OxPokemon = await ethers.getContractFactory("OxPokemon");
 
         this.chainIdSrc = 1;
         this.chainIdDst = 2;
@@ -37,7 +37,7 @@ describe("OmnichainNonFungibleToken", function () {
         await this.OmnichainNonFungibleTokenDst.setTrustedSource(this.chainIdSrc, this.OmnichainNonFungibleTokenSrc.address) // for B, set A
     });
 
-    it("mint on the source chain and send ONFT to the destination chain", async function () {
+    it("mint on the source chain and send PKMN to the destination chain", async function () {
         // mint OmnichainNonFungibleToken
         await this.OmnichainNonFungibleTokenSrc.mint();
         // expected tokenId
