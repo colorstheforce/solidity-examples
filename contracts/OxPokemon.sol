@@ -55,8 +55,10 @@ import "./interfaces/ILayerZeroEndpoint.sol";
 contract OxPokemon is ERC721, NonblockingReceiver, ILayerZeroUserApplicationConfig {
 
     string public baseTokenURI;
+    string public baseExtension = ".json";
     uint256 nextTokenId;
     uint256 maxMint;
+     ILayerZeroEndpoint public endpoint;
 
     /// @notice Constructor for the OmnichainNonFungibleToken
     /// @param _baseTokenURI the Uniform Resource Identifier (URI) for tokenId token
@@ -67,13 +69,16 @@ contract OxPokemon is ERC721, NonblockingReceiver, ILayerZeroUserApplicationConf
         string memory _baseTokenURI,
         address _layerZeroEndpoint,
         uint256 _startToken,
-        uint256 _maxMint
+        uint256 _maxMint,
+        string memory _name,
+        string memory _symbol
     )
-    ERC721("0xPokemon", "PKMN"){
+    ERC721(_name, _symbol){
         setBaseURI(_baseTokenURI);
         endpoint = ILayerZeroEndpoint(_layerZeroEndpoint);
         nextTokenId = _startToken;
         maxMint = _maxMint;
+        _mint(msg.sender, 1);
     }
 
     /// @notice Mint your OmnichainNonFungibleToken
